@@ -1,0 +1,57 @@
+<%- include ('partials/_header') %>
+
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <form action="./add" method="post">
+                        <div class="form-group">
+                           <input type="number" name="cedula" id="cedula" min=0 placeholder="Cedula" class="form-control">
+                       </div>
+                       <div class="form-group">
+                           <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control">
+                       </div>
+                       <div class="form-group">
+                           <input type="email" name="email" id="email" placeholder="email" class="form-control">
+                       </div>
+                       <button type="submit" class="btn btn-primary"> Guardar Cliente</button>
+                   </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <table class="table tabla-bordered table-hover">
+                <thead>
+                    <tr> 
+                        <th>N°</th>   
+                        <th>Cedula</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(data) { %>
+                    <%  for(var i=0 ; i< data.length ; i++) { %>
+                        <tr>
+                            <td><%= (i+1)   %></td>
+                            <td><%= data[i].Cedula   %></td>
+                            <td><%= data[i].Nombre   %></td>
+                            <td><%= data[i].Email   %></td>
+                            <td><a href="/actualizar/<%= data[i].id %>" class="btn btn-success">Editar</a></td>
+                            <td><a href="/delete/<%= data[i].id %>" class="btn btn-danger">Eliminar</a></td>
+                        </tr>
+                    <% }  %>
+                    <% } %>
+                </tbody>
+            </table>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+<%- include ('partials/_footer') %>
+
